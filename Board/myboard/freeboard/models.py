@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils import timezone
+from django.core.cache import cache
 
 # Create your models here.
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -16,6 +18,11 @@ class Post(models.Model):
     def increase_Views(self):
         self.views = self.views + 1
         self.save()
+
+    # def delete(self, *args, **kwargs):
+    #     cache.delete(self.id)
+    #     super().delete(*args, **kwargs)
+
 
     # def post_Edited(self, eTitle, eContent):
     #     self.title = eTitle
