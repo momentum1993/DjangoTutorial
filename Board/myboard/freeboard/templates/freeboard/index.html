@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Free Board</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<h1> 자유게시판 <br></h1>
+<table class = "table table-hover">
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>날짜</th>
+            <th>조회수</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for post in post_list %}
+    <tr onClick="location.href='/freeboard/post/'+ {{ post.id }}" style="cursor:pointer;">
+        <td>{{ post.id }} </td>
+        <td>{{ post.title }} </td>
+        <td>{{ post.writer }} </td>
+        <td>{{ post.created_at }} </td>
+        <td>{{ post.views }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<hr/>
+<a class="btn btn-outline-primary center" href="/freeboard/writepost/">글쓰기</a>
+
+<div class="text-center">
+    <ul class="pagination">
+        {% for num in board_num  %}
+            {% if num > 1 %}
+            <li class="page-item"><a class="page-link" href="/freeboard/{{num}}/">{{ num }}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="/freeboard/">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
